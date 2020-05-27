@@ -1,4 +1,4 @@
-const games = [
+[
     {
         "id": 1,
         "title": "Roll for the Galaxy",
@@ -49,4 +49,4 @@ const games = [
         "title": "5 Tribes",
         "playCount": 0
     }
-];
+]

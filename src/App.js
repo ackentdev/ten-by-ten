@@ -1,7 +1,7 @@
 import React from 'react';
 import Game from './Components/Game'
-import games from '../games'
 import './App.css';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(){
@@ -16,16 +16,20 @@ class App extends React.Component {
     this.getGames();
   }
 
-  getGames = () => {
+  getGames = async () => {
+    const res = await axios.get('/api/games')
     this.setState({
-      games: games
+      games: res.data 
     })
   }
 
   render(){
-    const mappedGames = this.state.games.map( game => <div key={`game-id-${game.id}`}>
-      <Game/>
-    </div>)
+    const { games } = this.state
+    const mappedGames = games.map( game => {
+     return <div key={`game-id-${game.id}`}>
+        <Game title={game.title}/>
+      </div>
+    })
     return <div>
       {mappedGames}
     </div>
